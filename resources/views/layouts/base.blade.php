@@ -13,6 +13,7 @@
 @include('parts.header')
 
 <div class="container justify-content-center mt-3">
+    <x-alert/>
     @yield('content')
 </div>
 

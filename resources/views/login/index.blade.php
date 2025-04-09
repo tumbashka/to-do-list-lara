@@ -5,17 +5,13 @@
 @section('content')
     <x-container>
         <x-card.card>
-            <form action="{{ route('registration.store') }}" method="post">
+            <x-card.header>
+                {{ $title }}
+            </x-card.header>
+            <form action="{{ route('login.store') }}" method="post">
                 @csrf
-                <x-card.header>
-                    {{ $title }}
-                </x-card.header>
                 <x-card.body>
                     <div class="row  p-sm-4">
-                        <x-form.input-float
-                            :icon="'fas fa-user fa-lg me-3 fa-fw'"
-                            :text="'Имя'"
-                            :name="'name'"/>
                         <x-form.input-float
                             :icon="'fas fa-at fa-lg me-3 fa-fw'"
                             :type="'email'"
@@ -26,20 +22,20 @@
                             :type="'password'"
                             :text="'Пароль'"
                             :name="'password'"/>
-                        <x-form.input-float
-                            :icon="'fas fa-key fa-lg me-3 fa-fw'"
-                            :type="'password'"
-                            :text="'Подтвердите пароль'"
-                            :name="'password_confirmation'"/>
+                        <x-form.checkbox class="mb-0"
+                                         :icon="'fas fa-regular fa-bookmark fa-lg me-3 fa-fw'"
+                                         :text="'Запомнить меня'"
+                                         :name="'remember'"
+                        />
                         <div class="d-flex justify-content-end">
                             <a class="link-underline link-underline-opacity-75-hover link-underline-opacity-0 text-end"
-                               href="{{ route('login') }}">Уже зарегистрированы?</a>
+                               href="{{ route('registration.index') }}">Ещё не зарегистрированы?</a>
                         </div>
                     </div>
                 </x-card.body>
                 <x-card.footer>
                     <button type="submit" class="btn btn-outline-secondary">
-                        Зарегистрироваться
+                        Войти
                     </button>
                 </x-card.footer>
             </form>

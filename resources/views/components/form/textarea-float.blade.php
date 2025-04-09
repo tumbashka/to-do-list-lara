@@ -1,6 +1,5 @@
 @props([
     'icon' => '',
-    'type' => 'text',
     'name' => '',
     'text' => '',
     'value' => null,
@@ -13,11 +12,8 @@
         <i class="{{ $icon }} "></i>
     @endif
     <div class="form-floating flex-fill mb-0">
-        <input type="{{ $type }}" class="form-control
-        {{ ($errors->has($name) || ($name == 'password_confirmation' && $errors->has('password'))) ? 'is-invalid' : '' }}"
-               value="{{ (($type != 'password') && old($name)) ? old($name) : $value ?? '' }}"
-               placeholder="{{ $text }}"
-               name="{{ $name }}"/>
+        <textarea class="form-control {{ $errors->has($name) ? 'is-invalid' : '' }}"
+                  style="height: 200px" name="{{ $name }}">{{ old($name) ? old($name) : $value ?? '' }}</textarea>
         <label class="form-label">
             {{ $text }}
         </label>
