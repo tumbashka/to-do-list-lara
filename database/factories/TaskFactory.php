@@ -26,8 +26,8 @@ class TaskFactory extends Factory
             'user_id' => User::factory(),
             'name' => fake()->realText(30),
             'description' => fake()->realText(),
-            'deadline' => fake()->dateTimeBetween('now', '+5 weeks'),
-            'completed_at' => fake()->dateTimeBetween('now', '+5 weeks'),
+            'deadline' => fake()->randomElement([null, fake()->dateTimeBetween('now', '+5 weeks')]),
+            'completed_at' => fake()->randomElement([null, now()]),
         ];
     }
 

@@ -41,7 +41,11 @@
                                 {{ getDeadlineForHuman($task->deadline) }}
                             </div>
                             <div class="col-1">
-                                <input type="checkbox" style=" transform: scale(1.5); " name="" id="">
+                                @if($task->completed_at)
+                                    <i class="fa-solid text-success fa-circle-check fa-lg"></i>
+                                @else
+                                    <i class="fa-solid text-danger fa-circle-xmark fa-lg"></i>
+                                @endif
                             </div>
                         </div>
                         @if(!$loop->last)

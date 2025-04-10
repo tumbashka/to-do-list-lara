@@ -45,7 +45,7 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         $user = auth()->user();
-        if($user->cant('show', $task)){
+        if ($user->cant('show', $task)) {
             abort(403);
         }
         $title = "Просмотр задачи";
@@ -55,17 +55,27 @@ class TaskController extends Controller
     public function change_status(Task $task)
     {
         $user = auth()->user();
-        if ($user->cant('update', $task)){
+        if ($user->cant('update', $task)) {
             abort(403);
         }
 
-        if($task->completed_at){
+        if ($task->completed_at) {
             $task->completed_at = null;
-        }else{
+        } else {
             $task->completed_at = now();
         }
         $task->save();
-
+//        dd($task->completed_at);
         return redirect()->back();
+    }
+
+    public function edit(Task $task)
+    {
+        $user = auth()->user();
+        if ($user->cant('update', $task)) {
+            abort(403);
+        }
+
+
     }
 }
