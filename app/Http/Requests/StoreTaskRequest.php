@@ -28,4 +28,11 @@ class StoreTaskRequest extends FormRequest
             'deadline' => ['nullable', 'date'],
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'Заголовок',
+        ];
+    }
 }

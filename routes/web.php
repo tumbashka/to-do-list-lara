@@ -9,8 +9,9 @@ Route::middleware(['auth'])->group(function () {
     Route::permanentRedirect('/', '/tasks')->name('home');
 
     Route::resource('tasks', TaskController::class);
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/tasks/{task}/change-status', [TaskController::class, 'change_status'])->name('tasks.change-status');
 
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['guest'])->group(function () {

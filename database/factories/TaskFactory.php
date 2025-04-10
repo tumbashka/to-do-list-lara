@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -9,12 +11,9 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class TaskFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    protected $model = Task::class;
 
     /**
      * Define the model's default state.
@@ -24,10 +23,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'user_id' => User::factory(),
+            'name' => fake()->realText(30),
+            'description' => fake()->realText(),
+            'deadline' => fake()->dateTimeBetween('now', '+5 weeks'),
+            'completed_at' => fake()->dateTimeBetween('now', '+5 weeks'),
         ];
     }
+
+
 }

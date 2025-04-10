@@ -24,7 +24,7 @@
                 @endguest
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link {{ activeLink('tasks.index') }}"
+                        <a class="nav-link {{ activeLink('tasks*') }}"
                            href="{{ route('tasks.index') }}">
                             Список задач
                         </a>

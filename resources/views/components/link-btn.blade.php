@@ -1,9 +1,9 @@
 @props([
     'href' => '#',
-    'text' => '',
+    'size' => ''
 ])
-<a href="{{ $href }}">
-    <button class="btn btn-sm btn-outline-secondary">
-        {{ $text }}
+<a href="{{ $href }}" class="d-grid link-underline link-underline-opacity-0">
+    <button class="btn {{ $size }} btn-outline-secondary">
+        {{ $slot }}
     </button>
 </a>
