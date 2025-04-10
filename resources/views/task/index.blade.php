@@ -7,15 +7,44 @@
         <div class="shadow p-2 m-0 bg-light border rounded text-center col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3">
             <div class="row mb-2">
                 <div class="col text-dark">
-                    Список задач
+                    <h5 class="mb-0">
+                        Список задач
+                    </h5>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col">
                     <x-link-btn :href="route('tasks.create')" :size="'btn-sm'">
                         Добавить задачу
                         <i class="fa-solid fa-circle-plus"></i>
                     </x-link-btn>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="dropdown-center d-grid">
+                        <button class="btn btn-sm dropdown-toggle btn-outline-secondary" data-bs-toggle="dropdown">
+                            Фильтр
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('tasks.index', ['filter' => 'completed']) }}">
+                                    Выполненные
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{{ route('tasks.index', ['filter' => 'not_completed']) }}">
+                                    Не выполненные
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('tasks.index') }}">
+                                    Все задачи
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,15 +55,17 @@
         @else
             <x-card.card>
                 <x-card.header>
-                    Все задачи
+                    {{ $header }}
                 </x-card.header>
                 <x-card.body>
                     @foreach($tasks as $task)
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <a href="{{ route('tasks.show', $task) }}"
-                                   class="link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
-                                    {{ $task->name }}
+                                   class="text-dark link-underline-dark link-underline-opacity-0 link-underline-opacity-100-hover ">
+                                    <p class="{{ $task->completed_at != null ? 'text-decoration-line-through' : '' }} ">
+                                        {{ $task->name }}
+                                    </p>
                                 </a>
                             </div>
                             <div class="col-3">

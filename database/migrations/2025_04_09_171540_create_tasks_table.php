@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->mediumText('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->date('deadline')->nullable();
             $table->timestamps();

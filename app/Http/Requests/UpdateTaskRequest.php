@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use App\Models\Task;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTaskRequest extends FormRequest
+class UpdateTaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', Task::class);
+        return $this->user()->can('update', $this->task);
     }
 
     /**

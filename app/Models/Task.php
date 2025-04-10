@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 
 class Task extends Model
 {
@@ -13,6 +14,16 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeIsCompleted(Builder $query): void
+    {
+         $query->whereNotNull('completed_at');
+    }
+    public function scopeIsNotCompleted(Builder $query): void
+    {
+        $query->whereNull('completed_at');
+    }
+
     protected $fillable = [
         'user_id',
         'name',
@@ -24,7 +35,7 @@ class Task extends Model
     protected function casts(): array
     {
         return [
-            'completed_at' => 'timestamp',
+            'completed_at' => 'datetime',
             'deadline' => 'date',
         ];
     }

@@ -13,6 +13,12 @@
         <x-card.card>
             <x-card.header>
                 {{ $title }}
+                <x-delete-modal-button class="position-absolute top-0 end-0 p-0 m-2"
+                                       :action="route('tasks.destroy', $task)"
+                                       :id="$task->id">
+                    <i class="fa-solid text-danger fa-trash-can fa-2x"></i>
+                </x-delete-modal-button>
+
             </x-card.header>
             <x-card.body>
                 <x-task.show-form :$task/>
@@ -20,7 +26,7 @@
             <x-card.footer>
                 <div class="row">
                     <div class="col d-grid pe-sm-2 mb-2 mb-sm-0">
-                        <x-link-btn>
+                        <x-link-btn :href="route('tasks.edit', $task)">
                             Редактировать
                         </x-link-btn>
                     </div>

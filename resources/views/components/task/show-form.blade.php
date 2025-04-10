@@ -21,10 +21,10 @@
 
 <div class="row pt-1">
     <div class="col-md-6 text-center">
-        <h6>
+        <h6 title="Дедлайн">
             <i class="fa-solid fa-stopwatch fa-lg"></i>
             @if($task->deadline)
-                {{ \Illuminate\Support\Carbon::create($task->deadline)->translatedFormat('d F Yг.') }}
+                {{ \Illuminate\Support\Carbon::parse($task->deadline)->translatedFormat('d F Yг.') }}
             @else
                 Бессрочно
             @endif
@@ -32,12 +32,12 @@
     </div>
     <div class="col-md-6 text-center">
         @if($task->completed_at)
-            <h6>
+            <h6 title="Дата выполнения">
                 <i class="fa-solid text-success fa-calendar-check fa-lg"></i>
-                {{ \Illuminate\Support\Carbon::createFromTimestamp($task->completed_at)->translatedFormat('d F Yг. в H:i') }}
+                {{ \Illuminate\Support\Carbon::parse($task->completed_at)->translatedFormat('d F Yг. в H:i') }}
             </h6>
         @else
-            <h6>
+            <h6 title="Дата выполнения">
                 <i class="fa-solid text-danger fa-calendar-xmark fa-lg"></i>
                 Не выполнено
             </h6>
